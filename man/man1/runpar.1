@@ -1,0 +1,113 @@
+.\"
+.\" ---------- TITLE / HEADER ------------------------------
+.\"
+.TH runpar.sh 1  "January 06, 2016" "version 1.1" "USER COMMANDS"
+.\"
+.SH NAME
+runpar.sh \- Parallel Processing Shell Script
+.\"
+.\" ---------- SYNOPSIS ------------------------------
+.\"
+.SH SYNOPSIS
+.B runpar.sh
+[options] [--] [files]
+.\"
+.\" ---------- DESCRIPTION ------------------------------
+.\"
+.SH DESCRIPTION
+runpar.sh is a shell script that executes commands in parallel, but their
+number is limited to an adjustable value.
+.PP
+With one CPU runpar.sh can be used to spread the load.  If multiple CPUs are
+available, processes can be executed in parallel.
+.\"
+.\" ---------- OPTIONS ------------------------------
+.\"
+.SH OPTIONS
+.TP
+\-c <command>    
+Command to execute in parallel; needs files to process.
+.TP
+\-C <file>       
+Use command file with one complete command per line.
+.TP
+\-d <delay>      
+Delay between checks for terminated processes (default 0.1 [seconds]).
+.TP
+\-D <delay>      
+Additional delay between max_proc processes (format: digits[smhd] ).
+.TP
+\-f <file>       
+Specify file containing filenames to process (needs -c).
+.TP
+\-h              
+Display this message.
+.TP
+\-l <file>       
+Set the log file name (default: LOGFILE.runpar.sh.<PID>).
+.TP
+\-L <limit>      
+Runtime limit (seconds), default is 0 (no runtime check); processes running longer then <limit> will be logged.
+.TP
+\-p <max_proc>   
+Start the specified number of processes in parallel. Ignore the number of CPUs.
+.TP
+\-v              
+Display a simple progress indicator.
+.\"
+.\" ---------- EXAMPLES ------------------------------
+.\"
+.SH EXAMPLES
+.\"
+.TP
+Generate Postscript files from all PDF files in the working directory:
+.B runpar.sh -c pdf2ps *.pdf
+.TP
+Generate Postscript files from all PDF files in the working directory:
+.B ls *.pdf | runpar.sh -c pdf2ps
+.\"
+.TP
+Generate Postscript files from all PDF files in the working directory; allow 4 parallel processes:
+.B ls *.pdf | runpar.sh -p 4 -c pdf2ps
+.\"
+.TP
+Generate  PDFs files from all eps-files listed in files.list; allow 4 parallel processes; display progress indicator; log processes running longer then 10 seconds:
+.\"
+.B runpar.sh -c epstopdf -p 4  -v -L 10 -f files.list 
+.\"
+.TP
+Run all commands from file commands.list :
+.B runpar.sh -C commands.list 
+.\"
+.\" ---------- EXIT STATUS ------------------------------
+.\"
+.SH EXIT STATUS
+.TP
+0
+success
+.TP
+1
+unknown option
+.TP
+2
+command not found or not executable
+.TP
+3
+no command given
+.TP
+4
+missing command line option(s)
+.SH OPTIONS
+.TP
+.\"
+.\"
+.\" ---------- AUTHOR ------------------------------
+.\"
+.SH AUTHOR
+Fritz Mehner ( mehner.fritz (at) web.de )
+.\"
+.\" ---------- SEE ALSO ------------------------------
+.\"
+.SH SEE ALSO
+xargs(1)
+
