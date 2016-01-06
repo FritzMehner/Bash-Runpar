@@ -9,7 +9,7 @@
 # 
 #       OPTIONS:  see USAGE below
 #  DEPENDENCIES:  date grep ps sleep which
-#        AUTHOR:  Dr.-Ing. Fritz Mehner (fgm), mehner@web.de
+#        AUTHOR:  Dr.-Ing. Fritz Mehner (fgm), mehner.fritz@web.de
 #       VERSION:  1.1
 #       CREATED:  08.01.2009 21:21:09 CET
 #      REVISION:  ---

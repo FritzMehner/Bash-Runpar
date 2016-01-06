@@ -129,5 +129,5 @@ FILES
 
 AUTHOR
 ================================================================================
-Dr. Fritz Mehner (fgm), fritz.mehner@web.de
+Dr. Fritz Mehner (fgm), mehner.fritz@web.de
 
